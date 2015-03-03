@@ -24,16 +24,19 @@
 ****************************************************************************/
 
 #include <QApplication>
-#include "mainwindow.h"
+#include "tg_main_window.hh"
+#include "tradegun_study.hh"
 
 int main(int argc, char *argv[])
 {
 #if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
-  QApplication::setGraphicsSystem("raster");
+    QApplication::setGraphicsSystem("raster");
 #endif
-  QApplication a(argc, argv);
-  MainWindow w;
-  w.show();
-  
-  return a.exec();
+    QApplication    qt_app(argc, argv);
+    TG_Main_Window  main_win;
+    TradeGun_Study  tmp_main_study(&main_win);
+
+    main_win.show();
+
+    return qt_app.exec();
 }

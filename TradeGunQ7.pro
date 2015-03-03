@@ -2,19 +2,32 @@
 #  QCustomPlot Plot Examples
 #
 
-QT       += core gui
+TEMPLATE = app
+TARGET = tradegun-q7
+
+# CONFIG += c++11
+QMAKE_CXXFLAGS += -std=c++11
+QMAKE_LFLAGS +=  -std=c++11
+
+QT      = core
+QT      += gui
+QT      += network
+
+lessThan(QT_MAJOR_VERSION, 5): error("requires Qt 5")
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
-TARGET = tradegun-q7
-TEMPLATE = app
 
-SOURCES += src/main.cpp\
-           src/mainwindow.cpp \
-           ext/qcustomplot/qcustomplot.cpp
+SOURCES +=\
+           ext/qcustomplot/qcustomplot.cpp \
+    src/tradegun_study.cc \
+    src/tg_main_window.cc \
+    src/main.cc
 
-HEADERS  += src/mainwindow.h \
+HEADERS  += \
             ext/qcustomplot/qcustomplot.h \
-    src/mainwindow_ui.h
+    src/tradegun_study.hh \
+    src/tg_main_window.hh \
+    src/tg_main_window_ui.hh
 
-FORMS    +=
+# FORMS    +=
 

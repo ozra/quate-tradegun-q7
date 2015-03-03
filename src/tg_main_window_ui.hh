@@ -10,14 +10,14 @@
 #define UI_MAINWINDOW_H
 
 #include <QtCore/QVariant>
-#include <QtGui/QAction>
-#include <QtGui/QApplication>
-#include <QtGui/QButtonGroup>
-#include <QtGui/QHeaderView>
-#include <QtGui/QMainWindow>
-#include <QtGui/QStatusBar>
-#include <QtGui/QVBoxLayout>
-#include <QtGui/QWidget>
+#include <QAction>
+#include <QApplication>
+#include <QButtonGroup>
+#include <QHeaderView>
+#include <QMainWindow>
+#include <QStatusBar>
+#include <QVBoxLayout>
+#include <QWidget>
 #include "../ext/qcustomplot/qcustomplot.h"
 
 QT_BEGIN_NAMESPACE
@@ -71,13 +71,13 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "QCustomPlot plot examples", 0, QApplication::UnicodeUTF8));
+        //MainWindow->setWindowTitle(QApplication::translate("MainWindow", "QCustomPlot plot examples", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };
 
 namespace Ui {
-    class MainWindow: public Ui_MainWindow {};
+    class TG_Main_Window: public Ui_MainWindow {};
 } // namespace Ui
 
 QT_END_NAMESPACE
