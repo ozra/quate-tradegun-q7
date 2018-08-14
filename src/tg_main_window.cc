@@ -647,8 +647,8 @@ void TG_Main_Window::reload_data() {
 
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
 
-    params.addQueryItem("study_id",     "budbrain_v1");
-    params.addQueryItem("arch",         "V8-internal-strategies");
+    params.addQueryItem("study_id",     "BudBrainMegamixProjectile");
+    //params.addQueryItem("arch",         "V8-internal-strategies");
     params.addQueryItem("version",      "0.42");
     params.addQueryItem("start_date",   "2014-01-31 12:15");
     params.addQueryItem("end_date",     "2014-01-31 14:45");
@@ -659,7 +659,17 @@ void TG_Main_Window::reload_data() {
 }
 
 void TG_Main_Window::send_panic_signal() {
-    QNetworkAccessManager *manager = new QNetworkAccessManager(this);
+
+
+    // *TODO* this should be made its own class since it will be a prominent part of the ui -> QuateConsole
+    auto ed = new QLineEdit();
+    ed->setFixedHeight(40);
+    ui->verticalLayout->addWidget(ed);
+    ed->setFocus();
+    return;
+
+
+    auto *manager = new QNetworkAccessManager(this);
     QObject::connect(manager, SIGNAL(finished(QNetworkReply *)), this, SLOT(httpReplyHandler(QNetworkReply *)));
     QUrl url("http://tradegun.x/study/command");
     QUrlQuery params;
@@ -672,6 +682,7 @@ void TG_Main_Window::send_panic_signal() {
     params.addQueryItem("cmd",          "panic");
     post_data.append(params.toString());
     manager->post(request, post_data);
+
 }
 
 void TG_Main_Window::send_save_command() {
@@ -1038,6 +1049,8 @@ void setupKeyboardShortcuts(TG_Main_Window * win) {
     new QShortcut(QKeySequence(Qt::Key_Q), win, SLOT(close()));
     new QShortcut(QKeySequence(Qt::Key_R), win, SLOT(reload_data()));
     new QShortcut(QKeySequence(Qt::Key_I), win, SLOT(toggle_legend()));
+
+    new QShortcut(QKeySequence(Qt::Key_Colon), win, SLOT(send_panic_signal()));
 
     new QShortcut(QKeySequence(Qt::SHIFT + Qt::Key_P), win, SLOT(send_panic_signal()));
     new QShortcut(QKeySequence(Qt::SHIFT + Qt::Key_S), win, SLOT(send_save_command()));
